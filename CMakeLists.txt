@@ -20,6 +20,14 @@ endif()
 target_include_directories(parsing.bin PRIVATE deps/mpc)
 target_sources(parsing.bin PRIVATE deps/mpc/mpc.c)
 
+project(evaluation C)
+add_executable(evaluation.bin evaluation.c)
+if(UNIX)
+  target_link_libraries(evaluation.bin editline)
+endif()
+target_include_directories(evaluation.bin PRIVATE deps/mpc)
+target_sources(evaluation.bin PRIVATE deps/mpc/mpc.c)
+
 if(PROJECT_IS_TOP_LEVEL AND UNIX)
   execute_process(
     COMMAND
