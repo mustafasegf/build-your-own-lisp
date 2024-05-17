@@ -28,6 +28,14 @@ endif()
 target_include_directories(evaluation.bin PRIVATE deps/mpc)
 target_sources(evaluation.bin PRIVATE deps/mpc/mpc.c)
 
+project(error_handling C)
+add_executable(error_handling.bin error_handling.c)
+if(UNIX)
+  target_link_libraries(error_handling.bin editline)
+endif()
+target_include_directories(error_handling.bin PRIVATE deps/mpc)
+target_sources(error_handling.bin PRIVATE deps/mpc/mpc.c)
+
 if(PROJECT_IS_TOP_LEVEL AND UNIX)
   execute_process(
     COMMAND
