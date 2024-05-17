@@ -1,6 +1,12 @@
 CC = clang
 CFLAGS = -std=c99 -Wall -Wextra -Werror -g
 SRC = $(wildcard *.c)
+EXE = $(SRC:.c=.bin)
 
-all: $(SRC)
-	$(CC) $(CFLAGS) -o main $(SRC)
+all: $(EXE)
+
+%.bin: %.c
+	$(CC) $(CFLAGS) $< -o $@
+
+clean:
+	rm -f $(EXE)
