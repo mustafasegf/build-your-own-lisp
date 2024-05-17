@@ -8,7 +8,17 @@ add_executable(hello_world.bin hello_world.c)
 
 project(prompt C)
 add_executable(prompt.bin prompt.c)
-target_link_libraries(prompt.bin editline)
+if(UNIX)
+  target_link_libraries(prompt.bin editline)
+endif()
+
+project(parsing C)
+add_executable(parsing.bin parsing.c)
+if(UNIX)
+  target_link_libraries(parsing.bin editline)
+endif()
+target_include_directories(parsing.bin PRIVATE deps/mpc)
+target_sources(parsing.bin PRIVATE deps/mpc/mpc.c)
 
 if(PROJECT_IS_TOP_LEVEL AND UNIX)
   execute_process(
