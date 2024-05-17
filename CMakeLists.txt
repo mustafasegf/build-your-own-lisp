@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.12.0)
+
+set(C_STANDARD 11)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+project(hello_world C)
+add_executable(hello_world.bin hello_world.c)
+
+project(prompt C)
+add_executable(prompt.bin prompt.c)
+target_link_libraries(prompt.bin editline)
+
+if(PROJECT_IS_TOP_LEVEL AND UNIX)
+  execute_process(
+    COMMAND
+      ${CMAKE_COMMAND} -E create_symlink
+      ${CMAKE_BINARY_DIR}/compile_commands.json
+      ${CMAKE_CURRENT_SOURCE_DIR}/compile_commands.json)
+endif()
