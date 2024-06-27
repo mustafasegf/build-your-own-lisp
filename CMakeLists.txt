@@ -36,6 +36,14 @@ endif()
 target_include_directories(error_handling.bin PRIVATE deps/mpc)
 target_sources(error_handling.bin PRIVATE deps/mpc/mpc.c)
 
+project(s_expressions C)
+add_executable(s_expressions.bin s_expressions.c)
+if(UNIX)
+  target_link_libraries(s_expressions.bin editline)
+endif()
+target_include_directories(s_expressions.bin PRIVATE deps/mpc)
+target_sources(s_expressions.bin PRIVATE deps/mpc/mpc.c)
+
 if(PROJECT_IS_TOP_LEVEL AND UNIX)
   execute_process(
     COMMAND
