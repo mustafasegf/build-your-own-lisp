@@ -68,6 +68,14 @@ endif()
 target_include_directories(funtions.bin PRIVATE deps/mpc)
 target_sources(funtions.bin PRIVATE deps/mpc/mpc.c)
 
+project(conditionals C)
+add_executable(conditionals.bin conditionals.c)
+if(UNIX)
+  target_link_libraries(conditionals.bin editline)
+endif()
+target_include_directories(conditionals.bin PRIVATE deps/mpc)
+target_sources(conditionals.bin PRIVATE deps/mpc/mpc.c)
+
 if(PROJECT_IS_TOP_LEVEL AND UNIX)
   execute_process(
     COMMAND
