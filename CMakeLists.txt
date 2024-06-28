@@ -44,6 +44,14 @@ endif()
 target_include_directories(s_expressions.bin PRIVATE deps/mpc)
 target_sources(s_expressions.bin PRIVATE deps/mpc/mpc.c)
 
+project(q_expressions C)
+add_executable(q_expressions.bin q_expressions.c)
+if(UNIX)
+  target_link_libraries(q_expressions.bin editline)
+endif()
+target_include_directories(q_expressions.bin PRIVATE deps/mpc)
+target_sources(q_expressions.bin PRIVATE deps/mpc/mpc.c)
+
 if(PROJECT_IS_TOP_LEVEL AND UNIX)
   execute_process(
     COMMAND
